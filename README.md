@@ -1,2 +1,2 @@
-# arduino
-repo for all arduino projects
+# low-level
+repo for all low-level projects
