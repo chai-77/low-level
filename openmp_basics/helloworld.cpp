@@ -69,17 +69,30 @@ int main(int argc, char* argv[]) {
             Managing parallel regions.
 
     */
-    #pragma omp parallel num_threads(thread_count) 
-    // entry point
-    {
-        hello();
-    }
-    // exit point (cannot jump and end outside this block)
-    /* 
-        goto outside the parallel region        Not allowed
+    if (thread_count < 1000) {
+        cout << omp_get_max_threads()<<'\n'; // gets max number of threads possible or greater than
+        
+        #pragma omp parallel num_threads(thread_count) 
+        // entry point
+        {
+            hello();
+        }
+        // exit point (cannot jump and end outside this block)
+        /* 
+            goto outside the parallel region        Not allowed
 
-        throw an exception out of the region        Not allowed
-    */
+            throw an exception out of the region        Not allowed
+
+            //exit will exit program, exit() terminates the entire process
+        */
+
+    }
+    else {
+        cout<< "please enter a second argument less than 1000\n";
+    }
+
+
+
 
     return 0;
 }
